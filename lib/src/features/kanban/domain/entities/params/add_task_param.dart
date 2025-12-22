@@ -6,7 +6,6 @@ class AddTaskParam extends Equatable {
   final String description;
 
   Map<String, dynamic> toJson() => {'name': title, 'description': description};
-
   @override
   List<Object?> get props => [title, description];
 }

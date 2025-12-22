@@ -4,4 +4,6 @@ extension BuildContextExt on BuildContext {
   Size get screenSize => MediaQuery.sizeOf(this);
 
   ThemeData get theme => Theme.of(this);
+
+  ScaffoldMessengerState get scaffoldMessenger => ScaffoldMessenger.of(this);
 }

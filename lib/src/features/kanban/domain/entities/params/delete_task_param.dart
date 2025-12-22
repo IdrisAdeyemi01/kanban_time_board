@@ -1,8 +1,8 @@
-import 'package:kanban_time_board/src/features/kanban/domain/entities/task.dart';
+import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 
 class DeleteTaskParam {
   const DeleteTaskParam({required this.task});
-  final TaskEntity task;
+  final KanbanTask task;
 
   Map<String, dynamic> toJson() => {'status': task};
 }

@@ -1,19 +1,21 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:kanban_time_board/src/core/error/failure.dart';
 import 'package:kanban_time_board/src/features/kanban/data/datasources/task_datasource.dart';
+import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/add_task_param.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/delete_task_param.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/get_tasks_param.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/update_task_param.dart';
-import 'package:kanban_time_board/src/features/kanban/domain/entities/task.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/repositories/task_repository.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
   TaskRepositoryImpl();
-  final datasource = TaskDatasource.getInstance();
+  TaskDatasource get datasource => TaskDatasource.getInstance();
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> addTask(AddTaskParam param) async {
+  Future<Either<Failure, List<KanbanTask>>> addTask(AddTaskParam param) async {
     try {
       final updatedTaskList = await datasource.addTask(param);
       return Right(updatedTaskList);
@@ -23,7 +25,7 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> deleteTasks(
+  Future<Either<Failure, List<KanbanTask>>> deleteTasks(
     DeleteTaskParam param,
   ) async {
     try {
@@ -35,7 +37,7 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> updateTask(
+  Future<Either<Failure, List<KanbanTask>>> updateTask(
     UpdateTaskParam param,
   ) async {
     try {
@@ -47,11 +49,12 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<TaskEntity>>> getTasksByStatus(
+  Future<Either<Failure, List<KanbanTask>>> getTasksByStatus(
     GetTasksParam? param,
   ) async {
     try {
       final updatedTaskList = await datasource.getTasks(param);
+
       return Right(updatedTaskList);
     } catch (e) {
       return const Left(TaskFailure(message: 'Failed to get tasks'));

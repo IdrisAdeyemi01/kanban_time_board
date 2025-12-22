@@ -1,17 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kanban_time_board/src/core/enums/task_status.dart';
+import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/delete_task_param.dart';
-import 'package:kanban_time_board/src/features/kanban/domain/entities/task.dart';
 
 void main() {
   group('DeleteTaskParam', () {
-    const task = TaskEntity(
+    final task = KanbanTask(
+      id: '1',
       title: 'Test Task',
       description: 'Test Description',
-      seconds: 3600,
       status: TaskStatus.todo,
+      color: Colors.orange,
     );
-    const param = DeleteTaskParam(task: task);
+    final param = DeleteTaskParam(task: task);
 
     test('toJson returns correct map', () {
       expect(param.toJson(), {'status': task});

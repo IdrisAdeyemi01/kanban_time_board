@@ -5,8 +5,8 @@ import 'package:kanban_time_board/src/features/kanban/domain/repositories/task_r
 import 'package:kanban_time_board/src/features/kanban/domain/repositories/task_repository.dart';
 
 abstract class KanbanDI {
-  static Future<void> inject() async {
-    di.registerLazySingleton<TaskDatasource>(TaskLocalDatasourceImpl.new);
-    di.registerLazySingleton<TaskRepository>(TaskRepositoryImpl.new);
+  static void inject() {
+    locator.registerLazySingleton<TaskDatasource>(TaskLocalDatasourceImpl.new);
+    locator.registerLazySingleton<TaskRepository>(TaskRepositoryImpl.new);
   }
 }

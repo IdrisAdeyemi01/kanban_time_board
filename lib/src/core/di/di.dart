@@ -4,11 +4,13 @@ import 'package:kanban_time_board/src/core/services/network/network_service_impl
 import 'package:kanban_time_board/src/core/services/tasks_storage/task_storage_service.dart';
 import 'package:kanban_time_board/src/core/services/tasks_storage/task_storage_service_impl.dart';
 
-final di = GetIt.instance;
+final locator = GetIt.instance;
 
 abstract class GeneralDI {
   static Future<void> inject() async {
-    TaskStorageService.inject(TaskStorageServiceImpl());
+    final taskStorageService = TaskStorageServiceImpl();
+    await taskStorageService.initialize();
+    TaskStorageService.inject(taskStorageService);
     NetworkService.inject(createDefaultDio());
   }
 }

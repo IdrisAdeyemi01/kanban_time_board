@@ -21,10 +21,18 @@ class AppRouter {
                 path: AppRoutes.kanbanView,
                 builder: (context, state) => KanbanView(),
               ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
               GoRoute(
                 path: AppRoutes.completedView,
                 builder: (context, state) => CompletedTasksView(),
               ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
               GoRoute(
                 path: AppRoutes.settingsView,
                 builder: (context, state) => SettingsView(),

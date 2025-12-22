@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kanban_time_board/src/shared/responsive_screen.dart';
+import 'package:kanban_time_board/src/shared/widgets/responsive_screen.dart';
 
 void main() {
   group('ResponsiveScreen', () {

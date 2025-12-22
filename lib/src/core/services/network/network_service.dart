@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:kanban_time_board/src/core/services/network/network_service_impl.dart';
+
+import '../../di/di.dart';
 
 abstract class NetworkService {
   const NetworkService();
   factory NetworkService.getInstance([String? baseUrl]) {
-    if (!GetIt.I.isRegistered<NetworkService>() && baseUrl != null) {
+    if (!locator.isRegistered<NetworkService>() && baseUrl != null) {
       inject(createDefaultDio());
     }
-    return GetIt.I<NetworkService>();
+    return locator<NetworkService>();
   }
 
   static void inject(Dio dio) {
-    GetIt.I.registerSingleton<NetworkService>(DioNetworkService(dio));
+    locator.registerSingleton<NetworkService>(DioNetworkService(dio));
   }
 
   Future<R> get<R>(
