@@ -105,6 +105,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get language;
+
+  /// Application title
+  ///
+  /// In en, this message translates to:
+  /// **'Kanban Time Board'**
+  String get appTitle;
+
+  /// Bottom navigation label for Kanban board
+  ///
+  /// In en, this message translates to:
+  /// **'Kanban'**
+  String get kanbanTab;
+
+  /// Bottom navigation label for Kanban board
+  ///
+  /// In en, this message translates to:
+  /// **'Kanban Board'**
+  String get kanbanBoard;
+
+  /// Settings menu label
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Label for language selection field
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get languageLabel;
+
+  /// Mark task as completed action
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as completed'**
+  String get markAsCompleted;
+
+  /// Language selection label
+  ///
+  /// In en, this message translates to:
+  /// **'Select language'**
+  String get selectLanguage;
+
+  /// To Do column label
+  ///
+  /// In en, this message translates to:
+  /// **'To Do'**
+  String get toDo;
+
+  /// In Progress column label
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// Done column label
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// Completed column label
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// Title for completed tasks view
+  ///
+  /// In en, this message translates to:
+  /// **'Completed Tasks'**
+  String get completedTasksTitle;
+
+  /// Empty state message for completed tasks
+  ///
+  /// In en, this message translates to:
+  /// **'No completed tasks yet!'**
+  String get noCompletedTasksYet;
+
+  /// Title for Kanban board view
+  ///
+  /// In en, this message translates to:
+  /// **'Kanban Board'**
+  String get kanbanBoardTitle;
+
+  /// Task details page title
+  ///
+  /// In en, this message translates to:
+  /// **'Task Details'**
+  String get taskDetails;
+
+  /// Comments section header
+  ///
+  /// In en, this message translates to:
+  /// **'Comments ({count})'**
+  String comments(int count);
+
+  /// Empty comments message
+  ///
+  /// In en, this message translates to:
+  /// **'No comments yet'**
+  String get noCommentsYet;
+
+  /// Empty comments subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Be the first to comment!'**
+  String get beTheFirstToComment;
+
+  /// Comment input placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Write a comment...'**
+  String get writeComment;
+
+  /// Default author label for comments
+  ///
+  /// In en, this message translates to:
+  /// **'Me'**
+  String get me;
+
+  /// Create task dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Create Task'**
+  String get createTask;
+
+  /// Edit task dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Task'**
+  String get editTask;
+
+  /// Title field label
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// Description field label
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// Cancel button
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Save button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Delete button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Empty column message
+  ///
+  /// In en, this message translates to:
+  /// **'Drop tasks here'**
+  String get dropTasksHere;
+
+  /// Timestamp for recent activity
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// Minutes ago timestamp
+  ///
+  /// In en, this message translates to:
+  /// **'{count}m ago'**
+  String minutesAgo(int count);
+
+  /// Hours ago timestamp
+  ///
+  /// In en, this message translates to:
+  /// **'{count}h ago'**
+  String hoursAgo(int count);
+
+  /// Days ago timestamp
+  ///
+  /// In en, this message translates to:
+  /// **'{count}d ago'**
+  String daysAgo(int count);
+
+  /// Delete confirmation message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this task?'**
+  String get deleteConfirmation;
+
+  /// Yes button
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No button
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// Task created success message
+  ///
+  /// In en, this message translates to:
+  /// **'Task created successfully'**
+  String get taskCreated;
+
+  /// Task updated success message
+  ///
+  /// In en, this message translates to:
+  /// **'Task updated successfully'**
+  String get taskUpdated;
+
+  /// Task deleted success message
+  ///
+  /// In en, this message translates to:
+  /// **'Task deleted successfully'**
+  String get taskDeleted;
+
+  /// Error label
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Loading indicator text
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
 }
 
 class _AppLocalizationsDelegate

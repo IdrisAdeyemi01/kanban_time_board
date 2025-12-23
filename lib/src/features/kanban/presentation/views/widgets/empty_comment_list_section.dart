@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 
 class EmptyCommentListSection extends StatelessWidget {
   const EmptyCommentListSection({super.key});
@@ -16,12 +17,12 @@ class EmptyCommentListSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'No comments yet',
+            context.l10n.noCommentsYet,
             style: TextStyle(fontSize: 16, color: Colors.grey.shade500),
           ),
           const SizedBox(height: 8),
           Text(
-            'Be the first to comment!',
+            context.l10n.beTheFirstToComment,
             style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
           ),
         ],

@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'dart:developer';
 
 import 'package:hive_flutter/adapters.dart';
-import 'package:kanban_time_board/src/core/constants/storage_keys.dart';
+import 'package:kanban_time_board/src/core/constants/storage_box_keys.dart';
 import 'package:kanban_time_board/src/core/services/tasks_storage/task_storage_service.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/duration_adapter.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
@@ -30,7 +30,7 @@ class TaskStorageServiceImpl implements TaskStorageService {
         return _box!;
       }
 
-      _box = await Hive.openBox<KanbanTask>(StorageKeys.kanbanTasksBox);
+      _box = await Hive.openBox<KanbanTask>(StorageBoxKeys.kanbanTasksBox);
 
       return _box!;
     } catch (e) {

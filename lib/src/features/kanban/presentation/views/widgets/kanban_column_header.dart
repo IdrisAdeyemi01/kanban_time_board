@@ -32,7 +32,7 @@ class KanbanColumnHeader extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    taskStatus.title,
+                    taskStatus.localizedTitle(context),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

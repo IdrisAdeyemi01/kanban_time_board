@@ -3,5 +3,189 @@
     "language": "English",
     "@language": {
         "description": "Default language"
+    },
+    "appTitle": "Kanban Time Board",
+    "@appTitle": {
+        "description": "Application title"
+    },
+    "kanbanTab": "Kanban",
+    "@kanbanTab": {
+        "description": "Bottom navigation label for Kanban board"
+    },
+    "kanbanBoard": "Kanban Board",
+    "@kanbanBoard": {
+        "description": "Bottom navigation label for Kanban board"
+    },
+    "settings": "Settings",
+    "@settings": {
+        "description": "Settings menu label"
+    },
+    "languageLabel": "Language",
+    "@languageLabel": {
+        "description": "Label for language selection field"
+    },
+    "markAsCompleted": "Mark as completed",
+    "@markAsCompleted": {
+        "description": "Mark task as completed action"
+    },
+    "selectLanguage": "Select language",
+    "@selectLanguage": {
+        "description": "Language selection label"
+    },
+    "toDo": "To Do",
+    "@toDo": {
+        "description": "To Do column label"
+    },
+    "inProgress": "In Progress",
+    "@inProgress": {
+        "description": "In Progress column label"
+    },
+    "done": "Done",
+    "@done": {
+        "description": "Done column label"
+    },
+    "completed": "Completed",
+    "@completed": {
+        "description": "Completed column label"
+    },
+    "completedTasksTitle": "Completed Tasks",
+    "@completedTasksTitle": {
+        "description": "Title for completed tasks view"
+    },
+    "noCompletedTasksYet": "No completed tasks yet!",
+    "@noCompletedTasksYet": {
+        "description": "Empty state message for completed tasks"
+    },
+    "kanbanBoardTitle": "Kanban Board",
+    "@kanbanBoardTitle": {
+        "description": "Title for Kanban board view"
+    },
+    "taskDetails": "Task Details",
+    "@taskDetails": {
+        "description": "Task details page title"
+    },
+    "comments": "Comments ({count})",
+    "@comments": {
+        "description": "Comments section header",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    },
+    "noCommentsYet": "No comments yet",
+    "@noCommentsYet": {
+        "description": "Empty comments message"
+    },
+    "beTheFirstToComment": "Be the first to comment!",
+    "@beTheFirstToComment": {
+        "description": "Empty comments subtitle"
+    },
+    "writeComment": "Write a comment...",
+    "@writeComment": {
+        "description": "Comment input placeholder"
+    },
+    "me": "Me",
+    "@me": {
+        "description": "Default author label for comments"
+    },
+    "createTask": "Create Task",
+    "@createTask": {
+        "description": "Create task dialog title"
+    },
+    "editTask": "Edit Task",
+    "@editTask": {
+        "description": "Edit task dialog title"
+    },
+    "title": "Title",
+    "@title": {
+        "description": "Title field label"
+    },
+    "description": "Description",
+    "@description": {
+        "description": "Description field label"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "Cancel button"
+    },
+    "save": "Save",
+    "@save": {
+        "description": "Save button"
+    },
+    "delete": "Delete",
+    "@delete": {
+        "description": "Delete button"
+    },
+    "dropTasksHere": "Drop tasks here",
+    "@dropTasksHere": {
+        "description": "Empty column message"
+    },
+    "justNow": "Just now",
+    "@justNow": {
+        "description": "Timestamp for recent activity"
+    },
+    "minutesAgo": "{count}m ago",
+    "@minutesAgo": {
+        "description": "Minutes ago timestamp",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "5"
+            }
+        }
+    },
+    "hoursAgo": "{count}h ago",
+    "@hoursAgo": {
+        "description": "Hours ago timestamp",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "2"
+            }
+        }
+    },
+    "daysAgo": "{count}d ago",
+    "@daysAgo": {
+        "description": "Days ago timestamp",
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "3"
+            }
+        }
+    },
+    "deleteConfirmation": "Are you sure you want to delete this task?",
+    "@deleteConfirmation": {
+        "description": "Delete confirmation message"
+    },
+    "yes": "Yes",
+    "@yes": {
+        "description": "Yes button"
+    },
+    "no": "No",
+    "@no": {
+        "description": "No button"
+    },
+    "taskCreated": "Task created successfully",
+    "@taskCreated": {
+        "description": "Task created success message"
+    },
+    "taskUpdated": "Task updated successfully",
+    "@taskUpdated": {
+        "description": "Task updated success message"
+    },
+    "taskDeleted": "Task deleted successfully",
+    "@taskDeleted": {
+        "description": "Task deleted success message"
+    },
+    "error": "Error",
+    "@error": {
+        "description": "Error label"
+    },
+    "loading": "Loading...",
+    "@loading": {
+        "description": "Loading indicator text"
     }
 }

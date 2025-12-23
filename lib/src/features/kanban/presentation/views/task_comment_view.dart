@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kanban_time_board/src/core/extensions/datetime_extension.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/task_comment.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/update_task_param.dart';
@@ -65,7 +66,7 @@ class _TaskCommentViewState extends State<TaskCommentView> {
 
     final comment = TaskComment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      author: 'Me',
+      author: context.l10n.me,
       content: _commentController.text.trim(),
       timestamp: DateTime.now(),
     );
@@ -86,7 +87,7 @@ class _TaskCommentViewState extends State<TaskCommentView> {
         );
         return Scaffold(
           backgroundColor: Colors.grey.shade100,
-          appBar: AppBar(title: const Text('Task Details'), elevation: 2),
+          appBar: AppBar(title: Text(context.l10n.taskDetails), elevation: 2),
           body: Column(
             children: [
               HeaderSection(task: task),
@@ -97,7 +98,7 @@ class _TaskCommentViewState extends State<TaskCommentView> {
                     Icon(Icons.comment, size: 20, color: Colors.grey.shade600),
                     const SizedBox(width: 8),
                     Text(
-                      'Comments (${task.comments.length})',
+                      context.l10n.comments(task.comments.length),
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -143,7 +144,7 @@ class _TaskCommentViewState extends State<TaskCommentView> {
                           controller: _commentController,
                           focusNode: _commentFocusNode,
                           decoration: InputDecoration(
-                            hintText: 'Write a comment...',
+                            hintText: context.l10n.writeComment,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide: BorderSide(
@@ -176,7 +177,7 @@ class _TaskCommentViewState extends State<TaskCommentView> {
                       IconButton.filled(
                         color: task.color,
                         onPressed: _addComment,
-                        icon: const Icon(Icons.send),
+                        icon: const Icon(Icons.send, color: Colors.white),
                       ),
                     ],
                   ),

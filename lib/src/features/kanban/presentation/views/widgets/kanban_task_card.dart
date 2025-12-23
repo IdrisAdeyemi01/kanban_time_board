@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 
 class KanbanTaskCard extends StatelessWidget {
@@ -157,8 +158,8 @@ class KanbanTaskCard extends StatelessWidget {
                   minimumSize: const Size.fromHeight(40),
                 ),
                 onPressed: onMarkAsComplete,
-                child: const Text(
-                  'Mark As Complete',
+                child: Text(
+                  context.l10n.markAsCompleted,
                   textAlign: TextAlign.center,
                 ),
               ),
