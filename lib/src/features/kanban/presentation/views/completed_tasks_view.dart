@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:kanban_time_board/src/core/router/app_routes.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/delete_task_param.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/bloc/task_bloc.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/widgets/kanban_task_card.dart';
@@ -59,9 +61,9 @@ class _CompletedTasksViewState extends State<CompletedTasksView> {
                           DeleteTaskEvent(param: DeleteTaskParam(task: task)),
                         );
                       },
-                      onMarkAsComplete: () {
-                        // Task is already completed; no action needed
-                      },
+                      onMarkAsComplete: () {},
+                      onTap: () =>
+                          context.push(AppRoutes.taskCommentView, extra: task),
                     );
                   },
                   separatorBuilder: (context, index) => const Divider(),

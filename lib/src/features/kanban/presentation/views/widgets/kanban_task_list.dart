@@ -8,6 +8,7 @@ class KanbanTaskList extends StatelessWidget {
   final Function(KanbanTask task) onEditTask;
   final Function(KanbanTask task) onDeleteTask;
   final Function(KanbanTask task) onMarkAsCompleteTask;
+  final Function(KanbanTask task) onTapTask;
 
   const KanbanTaskList({
     super.key,
@@ -16,6 +17,7 @@ class KanbanTaskList extends StatelessWidget {
     required this.onEditTask,
     required this.onDeleteTask,
     required this.onMarkAsCompleteTask,
+    required this.onTapTask,
   });
 
   @override
@@ -46,6 +48,7 @@ class KanbanTaskList extends StatelessWidget {
             onEdit: () => onEditTask(tasks[index]),
             onDelete: () => onDeleteTask(tasks[index]),
             onMarkAsComplete: () => onMarkAsCompleteTask(tasks[index]),
+            onTap: () => onTapTask(tasks[index]),
           ),
         );
       },

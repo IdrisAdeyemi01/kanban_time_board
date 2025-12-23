@@ -2,9 +2,9 @@ import 'dart:collection';
 import 'dart:developer';
 
 import 'package:hive_flutter/adapters.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kanban_time_board/src/core/constants/storage_keys.dart';
 import 'package:kanban_time_board/src/core/services/tasks_storage/task_storage_service.dart';
+import 'package:kanban_time_board/src/features/kanban/data/models/duration_adapter.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/task_comment.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/task_status_adapter.dart';
@@ -19,7 +19,7 @@ class TaskStorageServiceImpl implements TaskStorageService {
     Hive.registerAdapter(ColorAdapter());
     Hive.registerAdapter(KanbanTaskAdapter());
     Hive.registerAdapter(TaskStatusAdapter());
-    log('Hive initialized and adapters registered.');
+    Hive.registerAdapter(DurationAdapter());
   }
 
   // Open box if not already open
@@ -27,13 +27,9 @@ class TaskStorageServiceImpl implements TaskStorageService {
     try {
       // Return existing box if already open
       if (_box != null && _box!.isOpen) {
-        log('Using existing Hive box: ${StorageKeys.kanbanTasksBox}');
-        log(' Hive box: ${_box?.values.toList()}');
         return _box!;
       }
 
-      // Open new box
-      log('Opening Hive box: ${StorageKeys.kanbanTasksBox}');
       _box = await Hive.openBox<KanbanTask>(StorageKeys.kanbanTasksBox);
 
       return _box!;
@@ -48,8 +44,7 @@ class TaskStorageServiceImpl implements TaskStorageService {
     try {
       final box = await _getBox();
       await box.put(kanbanTask.id, kanbanTask);
-      final gotBox = await _getBox();
-      return UnmodifiableListView(gotBox.values.toList());
+      return UnmodifiableListView(box.values.toList());
     } catch (e) {
       log('Error adding task: $e');
       rethrow;

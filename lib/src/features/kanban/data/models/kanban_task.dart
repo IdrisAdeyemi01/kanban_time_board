@@ -59,6 +59,9 @@ extension KanbanTaskExtension on KanbanTask {
     }
     return '';
   }
+
+  bool get zeroComment => comments.isEmpty;
+  int get commentCount => comments.length;
 }
 
 @HiveType(typeId: HiveTypeIdKeys.kanbanTaskIdKey)

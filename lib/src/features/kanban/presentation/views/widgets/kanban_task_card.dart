@@ -6,6 +6,7 @@ class KanbanTaskCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback? onMarkAsComplete;
   final VoidCallback onDelete;
+  final VoidCallback onTap;
 
   const KanbanTaskCard({
     super.key,
@@ -13,123 +14,157 @@ class KanbanTaskCard extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
     required this.onMarkAsComplete,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final elapsedTime = task.getElapsedTime();
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: BoxDecoration(
-        color: task.color,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade300),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    task.title,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        decoration: BoxDecoration(
+          color: task.color,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.grey.shade300),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      task.title,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Visibility(
-                      visible: !task.status.isCompleted,
-                      child: InkWell(
-                        onTap: onEdit,
-                        child: Icon(
-                          Icons.edit,
-                          size: 16,
-                          color: Colors.grey.shade600,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Visibility(
+                        visible: !task.status.isCompleted,
+                        child: InkWell(
+                          onTap: onEdit,
+                          child: Icon(
+                            Icons.edit,
+                            size: 16,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    InkWell(
-                      onTap: onDelete,
-                      child: Icon(
-                        Icons.delete,
-                        size: 16,
-                        color: Colors.red.shade400,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  task.description,
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
-                ),
-                if (elapsedTime.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _TimeDisplay(task: task, elapsedTime: elapsedTime),
-                      Visibility(
-                        visible:
-                            task.status.isCompleted && task.endTime != null,
-                        child: Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              task.formattedEndDate,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey.shade600,
-                              ),
-                            ),
-                          ),
+                      const SizedBox(width: 8),
+                      InkWell(
+                        onTap: onDelete,
+                        child: Icon(
+                          Icons.delete,
+                          size: 16,
+                          color: Colors.red.shade400,
                         ),
                       ),
                     ],
                   ),
                 ],
-              ],
-            ),
-          ),
-          if (task.status.isDone) ...[
-            TextButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.green,
-                minimumSize: const Size.fromHeight(40),
-              ),
-              onPressed: onMarkAsComplete,
-              child: const Text(
-                'Mark As Complete',
-                textAlign: TextAlign.center,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          task.description,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade700,
+                          ),
+                        ),
+                      ),
+                      if (!task.zeroComment) ...[
+                        const SizedBox(width: 8),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.comment,
+                              size: 14,
+                              color: Colors.grey.shade600,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              '${task.commentCount}',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ],
+                  ),
+                  if (elapsedTime.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _TimeDisplay(task: task, elapsedTime: elapsedTime),
+                        Visibility(
+                          visible:
+                              task.status.isCompleted && task.endTime != null,
+                          child: Expanded(
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                task.formattedEndDate,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.grey.shade600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            if (task.status.isDone) ...[
+              TextButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.green,
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                onPressed: onMarkAsComplete,
+                child: const Text(
+                  'Mark As Complete',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

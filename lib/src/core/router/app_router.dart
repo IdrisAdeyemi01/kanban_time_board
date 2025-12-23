@@ -1,9 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:kanban_time_board/src/core/router/app_navigator.dart';
 import 'package:kanban_time_board/src/core/router/app_routes.dart';
+import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/completed_tasks_view.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/dashboard_shell_view.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/kanban_view.dart';
+import 'package:kanban_time_board/src/features/kanban/presentation/views/task_comment_view.dart';
 import 'package:kanban_time_board/src/features/settings/presentation/views/settings_view.dart';
 
 class AppRouter {
@@ -40,6 +42,13 @@ class AppRouter {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.taskCommentView,
+        builder: (context, state) {
+          final task = state.extra as KanbanTask;
+          return TaskCommentView(task: task);
+        },
       ),
     ],
   );

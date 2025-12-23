@@ -9,6 +9,7 @@ class DraggableKanbanTaskCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
   final VoidCallback onMarkAsComplete;
+  final VoidCallback onTap;
 
   const DraggableKanbanTaskCard({
     super.key,
@@ -17,6 +18,7 @@ class DraggableKanbanTaskCard extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
     required this.onMarkAsComplete,
+    required this.onTap,
   });
 
   @override
@@ -64,6 +66,7 @@ class DraggableKanbanTaskCard extends StatelessWidget {
           onEdit: onEdit,
           onDelete: onDelete,
           onMarkAsComplete: onMarkAsComplete,
+          onTap: onTap,
         ),
       ),
       child: KanbanTaskCard(
@@ -71,6 +74,7 @@ class DraggableKanbanTaskCard extends StatelessWidget {
         onEdit: onEdit,
         onDelete: onDelete,
         onMarkAsComplete: onMarkAsComplete,
+        onTap: onTap,
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,10 +43,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   ) async {
     emit(const TaskLoading());
     final result = await _addTaskUseCase(event.param);
-    log('AddTaskEvent result: $result');
+
     result.fold(
       (failure) => emit(TaskEventFailed(tasks: state.tasks)),
-      (tasks) => emit(TaskAdded(tasks: tasks)),
+      (tasks) => emit(TaskLoaded(tasks: tasks)),
     );
   }
 
@@ -69,7 +68,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   ) async {
     emit(const TaskLoading());
     final result = await _updateTaskUseCase(event.param);
-  
+
     result.fold(
       (failure) => emit(TaskEventFailed(tasks: state.tasks)),
       (tasks) => emit(TaskLoaded(tasks: tasks)),

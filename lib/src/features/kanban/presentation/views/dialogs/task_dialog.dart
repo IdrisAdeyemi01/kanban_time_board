@@ -46,6 +46,7 @@ class _TaskDialogState extends State<TaskDialog> {
         children: [
           TextField(
             controller: _titleController,
+            autofocus: true,
             decoration: const InputDecoration(
               labelText: 'Title',
               border: OutlineInputBorder(),

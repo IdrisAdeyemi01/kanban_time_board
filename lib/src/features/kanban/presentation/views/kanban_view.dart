@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kanban_time_board/src/core/enums/task_status.dart';
 import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
+import 'package:kanban_time_board/src/core/router/app_routes.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'dart:async';
 
@@ -29,6 +29,7 @@ class _KanbanViewState extends State<KanbanView> {
   @override
   void initState() {
     super.initState();
+    _fetchTasks();
     _startTimer();
   }
 
@@ -38,7 +39,11 @@ class _KanbanViewState extends State<KanbanView> {
     super.dispose();
   }
 
-  void _startTimer() {
+  void _fetchTasks() {
+    context.read<TaskBloc>().add(GetTasksByStatusEvent());
+  }
+
+  _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {});
     });
@@ -76,14 +81,11 @@ class _KanbanViewState extends State<KanbanView> {
           totalTime: totalTime,
         );
       }
-
       context.read<TaskBloc>().add(
         UpdateTaskEvent(
           param: UpdateTaskParam(oldTask: task, newTask: updatedTask),
         ),
       );
-
-      // toColumn.tasks.add(updatedTask);
     }
   }
 
@@ -97,62 +99,57 @@ class _KanbanViewState extends State<KanbanView> {
     );
   }
 
-  void _addTask(String columnId) {
-    showDialog(
+  void _addTask(String columnId) async {
+    final taskBloc = context.read<TaskBloc>(); // Get bloc before dialog
+
+    await showDialog(
       context: context,
-      builder: (context) => BlocProvider(
-        create: (context) => TaskBloc(),
-        child: Builder(
-          builder: (context) {
-            return TaskDialog(
-              onSave: (title, description) {
-                context.read<TaskBloc>().add(
-                  AddTaskEvent(
-                    param: AddTaskParam(title: title, description: description),
-                  ),
-                );
-              },
-            );
-          },
-        ),
+      builder: (context) => Builder(
+        builder: (context) {
+          return TaskDialog(
+            onSave: (title, description) {
+              taskBloc.add(
+                AddTaskEvent(
+                  param: AddTaskParam(title: title, description: description),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
 
   void _editTask(KanbanTask task, String columnId) {
+    final taskBloc = context.read<TaskBloc>();
+
     showDialog(
       context: context,
-      builder: (context) => BlocProvider(
-        create: (context) => TaskBloc(),
-        child: Builder(
-          builder: (context) {
-            return TaskDialog(
-              initialTitle: task.title,
-              initialDescription: task.description,
-              onSave: (title, description) {
-                context.read<TaskBloc>().add(
-                  UpdateTaskEvent(
-                    param: UpdateTaskParam(
-                      oldTask: task,
-                      newTask: task.copyWith(
-                        title: title,
-                        description: description,
-                      ),
+      builder: (context) => Builder(
+        builder: (context) {
+          return TaskDialog(
+            initialTitle: task.title,
+            initialDescription: task.description,
+            onSave: (title, description) {
+              taskBloc.add(
+                UpdateTaskEvent(
+                  param: UpdateTaskParam(
+                    oldTask: task,
+                    newTask: task.copyWith(
+                      title: title,
+                      description: description,
                     ),
                   ),
-                );
-              },
-            );
-          },
-        ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
 
   void _deleteTask(KanbanTask task, String columnId) {
-    final columns = context.read<TaskBloc>().state.tasks.getTaskColumns();
-    final column = columns.firstWhere((col) => col.status.id == columnId);
-    column.tasks.removeWhere((t) => t.id == task.id);
     context.read<TaskBloc>().add(
       DeleteTaskEvent(param: DeleteTaskParam(task: task)),
     );
@@ -162,7 +159,6 @@ class _KanbanViewState extends State<KanbanView> {
   Widget build(BuildContext context) {
     return BlocConsumer<TaskBloc, TaskState>(
       listener: (context, state) {
-        log('Listener triggered: $state');
         if (state is TaskAdded) {
           context.scaffoldMessenger.showSnackBar(
             const SnackBar(content: Text('Task Added Successfully')),
@@ -170,18 +166,19 @@ class _KanbanViewState extends State<KanbanView> {
         }
       },
       builder: (context, state) {
-        final columns = context.watch<TaskBloc>().state.tasks.getTaskColumns();
         return Builder(
           builder: (context) {
             return Scaffold(
               appBar: AppBar(title: const Text('Kanban Board'), elevation: 2),
               body: KanbanBoard(
-                columns: columns,
+                columns: state.tasks.getTaskColumns(),
                 onTaskMoved: _moveTask,
                 onAddTask: _addTask,
                 onEditTask: _editTask,
                 onDeleteTask: _deleteTask,
                 onMarkAsCompleteTask: _markAsCompleteTask,
+                onTapTask: (task, id) =>
+                    context.push(AppRoutes.taskCommentView, extra: task),
               ),
             );
           },
@@ -190,34 +187,3 @@ class _KanbanViewState extends State<KanbanView> {
     );
   }
 }
-
-//  void _openTaskDetails(KanbanTask task, String columnId) {
-//     Navigator.push(
-//       context,
-//       MaterialPageRoute(
-//         builder: (context) => TaskDetailsPage(
-//           task: task,
-//           onCommentAdded: (comment) {
-//             setState(() {
-//               final column = columns.firstWhere((col) => col.id == columnId);
-//               final taskIndex = column.tasks.indexWhere((t) => t.id == task.id);
-//               if (taskIndex != -1) {
-//                 final updatedComments = List<TaskComment>.from(task.comments)..add(comment);
-//                 column.tasks[taskIndex] = task.copyWith(comments: updatedComments);
-//               }
-//             });
-//           },
-//           onCommentDeleted: (commentId) {
-//             setState(() {
-//               final column = columns.firstWhere((col) => col.id == columnId);
-//               final taskIndex = column.tasks.indexWhere((t) => t.id == task.id);
-//               if (taskIndex != -1) {
-//                 final updatedComments = task.comments.where((c) => c.id != commentId).toList();
-//                 column.tasks[taskIndex] = task.copyWith(comments: updatedComments);
-//               }
-//             });
-//           },
-//         ),
-//       ),
-//     );
-//   }
