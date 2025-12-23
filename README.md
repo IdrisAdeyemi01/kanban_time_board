@@ -11,7 +11,6 @@ A feature-rich mobile application for task management with integrated time track
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="screenshots/in_progress_timer.png" width="200" alt="Kanban showing Timer on In Progress Task"/>
   <img src="screenshots/task_details.png" width="200" alt="Task Details"/>
-  <img src="screenshots/done_task.png" width="200" alt="Done Task"/>
   <img src="screenshots/completed_task.png" width="200" alt="Completed Task"/>
   <img src="screenshots/task_details_with_comment.png" width="200" alt="Comments"/>
   <img src="screenshots/language_settings.png" width="200" alt="Language Settings"/>
