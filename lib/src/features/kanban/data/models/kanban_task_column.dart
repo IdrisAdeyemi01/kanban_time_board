@@ -2,8 +2,6 @@ import 'package:kanban_time_board/src/core/enums/task_status.dart';
 
 import 'kanban_task.dart';
 
-
-
 class KanbanTaskColumn {
   final TaskStatus status;
   final List<KanbanTask> tasks;
@@ -16,6 +14,4 @@ class KanbanTaskColumn {
       tasks: tasks ?? this.tasks,
     );
   }
-
-
 }

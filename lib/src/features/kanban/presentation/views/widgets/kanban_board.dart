@@ -13,7 +13,6 @@ class KanbanBoard extends StatelessWidget {
   final Function(KanbanTask task, String columnId) onMarkAsCompleteTask;
   final Function(KanbanTask task, String columnId) onTapTask;
 
-
   const KanbanBoard({
     super.key,
     required this.columns,
@@ -46,7 +45,7 @@ class KanbanBoard extends StatelessWidget {
                         onDeleteTask(task, column.status.id),
                     onMarkAsCompleteTask: (task) =>
                         onMarkAsCompleteTask(task, column.status.id),
-                        onTapTask: (task) => onTapTask(task, column.status.id),
+                    onTapTask: (task) => onTapTask(task, column.status.id),
                   ),
                 )
                 .toList(),

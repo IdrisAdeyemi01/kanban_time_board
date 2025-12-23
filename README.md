@@ -1,26 +1,29 @@
-# Time Tracking Kanban Board
+# Kanban Board with Time Tracking for In Progress Tasks
 
 A feature-rich mobile application for task management with integrated time tracking, built with Flutter following clean architecture principles and industry best practices.
 
 ## 📱 Demo
 
-**[Demo Video Link](YOUR_DEMO_VIDEO_LINK)**
+**[Demo Video Link](https://www.loom.com/share/53a0573beb904cbbadba381a2fdb61ef)**
 
 ### Screenshots
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="screenshots/kanban_board.png" width="200" alt="Kanban Board"/>
+  <img src="screenshots/in_progress_timer.png" width="200" alt="Kanban showing Timer on In Progress Task"/>
   <img src="screenshots/task_details.png" width="200" alt="Task Details"/>
-  <img src="screenshots/timer_active.png" width="200" alt="Active Timer"/>
-  <img src="screenshots/task_history.png" width="200" alt="Task History"/>
-  <img src="screenshots/comments.png" width="200" alt="Comments"/>
+  <img src="screenshots/done_task.png" width="200" alt="Done Task"/>
+  <img src="screenshots/completed_task.png" width="200" alt="Completed Task"/>
+  <img src="screenshots/task_details_with_comment.png" width="200" alt="Comments"/>
+  <img src="screenshots/language_settings.png" width="200" alt="Language Settings"/>
+  <img src="screenshots/app_in_german.png" width="200" alt="Kanban Board (German)"/>
+  <img src="screenshots/app_in_turkiye.png" width="200" alt="Kanban Board (Turkiye)"/>
 </div>
 
 ## ✨ Features
 
 ### Core Features
 - ✅ **Kanban Board** - Drag-and-drop task management across three columns (To Do, In Progress, Done)
-- ✅ **Time Tracking** - Start/stop/pause timer for each task with persistent state
+- ✅ **Time Tracking** - Timer for each task in progress with persistent state
 - ✅ **Task History** - View completed tasks with time spent and completion dates
 - ✅ **Comments** - Add and view comments on tasks for better collaboration
 - ✅ **Task Management** - Create, edit, delete, and move tasks between columns
@@ -30,10 +33,7 @@ A feature-rich mobile application for task management with integrated time track
 - ✅ **Offline Support** - Works without internet connection, syncs when online
 - ✅ **Persistent Storage** - Timer state persists across app restarts
 - ✅ **Real-time Updates** - Instant UI updates for all operations
-- ✅ **Error Handling** - Graceful error handling with user-friendly messages
-- ✅ **Loading States** - Shimmer effects and progress indicators
 - ✅ **Responsive UI** - Smooth animations and transitions
-- ✅ **Pull to Refresh** - Manual sync with Todoist API
 
 ## 🏗️ Architecture
 
@@ -59,14 +59,10 @@ lib/
 │   │   │   └── usecases/          # Business use cases
 │   │   └── presentation/          # Presentation layer (UI)
 │   │       ├── bloc/              # BLoC state management
-│   │       ├── pages/             # Screen widgets
+│   │       ├── views/             # Screen widgets
 │   │       └── widgets/           # Reusable UI components
 │   │
-│   ├── timer/                     # Timer feature
-│   ├── history/                   # Task history feature
-│   └── comments/                  # Comments feature
 │
-├── injection_container.dart       # Dependency injection setup
 └── main.dart                      # App entry point
 ```
 
@@ -89,44 +85,32 @@ lib/
 - Data models with JSON serialization
 - API integration
 
-For detailed architecture documentation, see [ARCHITECTURE.md](./ARCHITECTURE.md)
-
 ## 🛠️ Tech Stack
 
 ### Core
-- **Flutter** 3.16.0+ (Dart 3.2.0+)
-- **BLoC** (flutter_bloc ^8.1.3) - State management
-- **GetIt** (get_it ^7.6.4) - Dependency injection
-- **Injectable** (injectable ^2.3.2) - DI code generation
+- **Flutter** 3.35.7+ (Dart 3.9.2+)
+- **BLoC** (flutter_bloc ^9.1.1) - State management
+- **GetIt** (get_it ^9.2.0) - Dependency injection
 
 ### Data & Storage
-- **Dio** (dio ^5.4.0) - HTTP client
+- **Dio** (dio ^5.9.0) - HTTP client
 - **Hive** (hive ^2.2.3) - Local storage
 - **Dartz** (dartz ^0.10.1) - Functional programming (Either type)
 
 ### Code Generation
-- **Freezed** (freezed ^2.4.6) - Immutable models
-- **Json Serializable** (json_serializable ^6.7.1) - JSON serialization
-- **Build Runner** (build_runner ^2.4.7) - Code generation
-
-### Testing
-- **Mockito** (mockito ^5.4.4) - Mocking
-- **Bloc Test** (bloc_test ^9.1.5) - BLoC testing
+- **Build Runner** (build_runner ^2.4.13) - Code generation
 
 ### UI/UX & Localization
-- **Intl** (intl ^0.18.1) - Internationalization & date formatting
+- **Intl** (intl any) - Internationalization & date formatting
 - **Flutter Localizations** - Multi-language support (EN, DE, TR)
-- **Flutter Slidable** (flutter_slidable ^3.0.1) - Swipe actions
 
-### CI/CD
-- **GitHub Actions** - Automated testing and analysis
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Flutter SDK 3.16.0 or higher
-- Dart SDK 3.2.0 or higher
+- Flutter SDK 3.35.7 or higher
+- Dart SDK 3.9.2 or higher
 - Android Studio / VS Code with Flutter extensions
 - Git
 
@@ -134,8 +118,8 @@ For detailed architecture documentation, see [ARCHITECTURE.md](./ARCHITECTURE.md
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/YOUR_USERNAME/time-tracking-kanban.git
-cd time-tracking-kanban
+git clone https://github.com/IdrisAdeyemi01/kanban_time_board.git
+cd kanban_time_board
 ```
 
 2. **Install dependencies**
@@ -143,23 +127,13 @@ cd time-tracking-kanban
 flutter pub get
 ```
 
-3. **Set up Todoist API Token**
 
-   a. Go to [Todoist App Management Console](https://app.todoist.com/app/settings/integrations/developer)
-   
-   b. Create a new app and get your test token
-   
-   c. Create a `.env` file in the project root:
-   ```
-   TODOIST_API_TOKEN=your_test_token_here
-   ```
-
-4. **Generate code**
+3. **Generate code**
 ```bash
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-5. **Run the app**
+4. **Run the app**
 ```bash
 flutter run
 ```
@@ -212,18 +186,7 @@ open coverage/html/index.html
 
 **Test Coverage:** ~[X]%
 
-## 📊 CI/CD
 
-The project includes automated CI/CD pipeline using GitHub Actions:
-
-- ✅ Automated testing on every push/PR
-- ✅ Code analysis (`flutter analyze`)
-- ✅ Code formatting check (`dart format`)
-- ✅ Test coverage reporting
-
-See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for details.
-
-## 🎯 Design Decisions
 
 ### State Management: BLoC
 
@@ -243,7 +206,7 @@ See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for details.
 - Platform-independent business logic
 - Easy to modify or replace implementations
 
-### Dependency Injection: GetIt + Injectable
+### Dependency Injection: GetIt
 
 **Advantages:**
 - Loose coupling between components
@@ -259,29 +222,6 @@ See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for details.
 - Type-safe
 - Perfect for timer state persistence
 
-## 📝 API Integration
-
-### Todoist REST API v2
-
-The app integrates with Todoist API for:
-- Task CRUD operations
-- Task completion tracking
-- Comment management
-
-**Key Endpoints Used:**
-- `GET /rest/v2/tasks` - Fetch all tasks
-- `POST /rest/v2/tasks` - Create new task
-- `POST /rest/v2/tasks/{id}` - Update task
-- `DELETE /rest/v2/tasks/{id}` - Delete task
-- `POST /rest/v2/tasks/{id}/close` - Complete task
-- `GET /rest/v2/comments` - Fetch comments
-- `POST /rest/v2/comments` - Add comment
-
-**Features:**
-- Proper error handling
-- Retry mechanism for failed requests
-- Offline support with local caching
-- Token-based authentication
 
 ## 🎨 UI/UX Highlights
 
@@ -290,8 +230,6 @@ The app integrates with Todoist API for:
 - **Smooth Animations** - Drag-and-drop with visual feedback
 - **Color-coded Columns** - Easy visual distinction (To Do: Blue, In Progress: Orange, Done: Green)
 - **Empty States** - Helpful messages when no data
-- **Loading States** - Shimmer effects for better UX
-- **Error States** - User-friendly error messages
 - **Responsive Design** - Works on various screen sizes
 
 ### Language Support
@@ -300,8 +238,6 @@ The app supports three languages:
 - 🇬🇧 **English** - Default language
 - 🇩🇪 **German (Deutsch)** - For German-speaking users
 - 🇹🇷 **Turkish (Türkçe)** - For Turkish-speaking users
-
-Language automatically detects device locale and can be manually changed in settings.
 
 ## 📖 Code Quality
 
@@ -324,7 +260,6 @@ Language automatically detects device locale and can be manually changed in sett
 - DRY (Don't Repeat Yourself)
 - KISS (Keep It Simple, Stupid)
 - Consistent naming conventions
-- Comprehensive inline documentation
 - Meaningful variable and function names
 
 ### Code Analysis
@@ -339,14 +274,6 @@ dart format --set-exit-if-changed .
 
 **Analysis Result:** 0 issues
 
-## 🔒 Security Considerations
-
-- ✅ API tokens stored in `.env` (not committed to Git)
-- ✅ Secure token handling in API client
-- ✅ Input validation for user data
-- ✅ Proper error handling (no sensitive data in error messages)
-- ✅ HTTPS-only API communication
-
 ## 🚧 Known Limitations
 
 - Todoist API rate limiting (450 requests per 15 minutes)
@@ -356,6 +283,7 @@ dart format --set-exit-if-changed .
 ## 🔮 Future Enhancements
 
 - [ ] Push notifications for task reminders
+- [ ] Full implementation of the Todoist API for internet synchronization
 - [ ] Dark mode support
 - [x] ~~Multi-language support (i18n)~~ ✅ **COMPLETED** (English, German, Turkish)
 - [ ] Additional languages (Spanish, French, etc.)
@@ -370,7 +298,6 @@ dart format --set-exit-if-changed .
 
 - [Flutter Documentation](https://docs.flutter.dev/)
 - [BLoC Documentation](https://bloclibrary.dev/)
-- [Todoist API Documentation](https://developer.todoist.com/rest/v2/)
 - [Clean Architecture Article](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 ## 🤝 Contributing
@@ -380,8 +307,7 @@ This is a case study project for innoscripta. For any questions or clarification
 **Idris Adeyemi Idris**
 - Email: idrisade.eedris@gmail.com
 - Phone: +2348135469842
-- GitHub: [YOUR_GITHUB_PROFILE]
-- LinkedIn: [YOUR_LINKEDIN_PROFILE]
+- LinkedIn: [Idris Idris](https://linkedin.com/in/idris-idris)
 
 ## 📄 License
 
