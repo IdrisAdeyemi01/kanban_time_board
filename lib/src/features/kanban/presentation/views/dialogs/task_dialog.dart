@@ -1,5 +1,6 @@
 // Task Dialog for Create/Edit
 import 'package:flutter/material.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 
 class TaskDialog extends StatefulWidget {
   final String? initialTitle;
@@ -40,24 +41,28 @@ class _TaskDialogState extends State<TaskDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.initialTitle == null ? 'Create Task' : 'Edit Task'),
+      title: Text(
+        widget.initialTitle == null
+            ? context.l10n.createTask
+            : context.l10n.editTask,
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _titleController,
             autofocus: true,
-            decoration: const InputDecoration(
-              labelText: 'Title',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: context.l10n.title,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 16),
           TextField(
             controller: _descriptionController,
-            decoration: const InputDecoration(
-              labelText: 'Description',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: context.l10n.description,
+              border: const OutlineInputBorder(),
             ),
             maxLines: 3,
           ),
@@ -66,7 +71,7 @@ class _TaskDialogState extends State<TaskDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(context.l10n.cancel),
         ),
         ElevatedButton(
           onPressed: () {
@@ -78,7 +83,7 @@ class _TaskDialogState extends State<TaskDialog> {
               Navigator.pop(context);
             }
           },
-          child: const Text('Save'),
+          child: Text(context.l10n.save),
         ),
       ],
     );

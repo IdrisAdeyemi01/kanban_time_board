@@ -15,21 +15,21 @@ class DashboardShellView extends StatelessWidget {
         selectedIndex: navigationShell.currentIndex,
         onDestinationSelected: navigationShell.goBranch,
         indicatorColor: context.theme.primaryColor,
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.view_kanban_outlined),
-            selectedIcon: Icon(Icons.view_kanban_outlined),
-            label: 'Kanban',
+            icon: const Icon(Icons.view_kanban_outlined),
+            selectedIcon: const Icon(Icons.view_kanban_outlined),
+            label: context.l10n.kanbanTab,
           ),
           NavigationDestination(
-            icon: Icon(Icons.task_alt_outlined),
-            selectedIcon: Icon(Icons.task_alt),
-            label: 'Completed',
+            icon: const Icon(Icons.task_alt_outlined),
+            selectedIcon: const Icon(Icons.task_alt),
+            label: context.l10n.completed,
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: context.l10n.settings,
           ),
         ],
       ),

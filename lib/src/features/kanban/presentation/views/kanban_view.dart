@@ -161,7 +161,7 @@ class _KanbanViewState extends State<KanbanView> {
       listener: (context, state) {
         if (state is TaskAdded) {
           context.scaffoldMessenger.showSnackBar(
-            const SnackBar(content: Text('Task Added Successfully')),
+            SnackBar(content: Text(context.l10n.taskCreated)),
           );
         }
       },
@@ -169,7 +169,10 @@ class _KanbanViewState extends State<KanbanView> {
         return Builder(
           builder: (context) {
             return Scaffold(
-              appBar: AppBar(title: const Text('Kanban Board'), elevation: 2),
+              appBar: AppBar(
+                title: Text(context.l10n.kanbanBoardTitle),
+                elevation: 2,
+              ),
               body: KanbanBoard(
                 columns: state.tasks.getTaskColumns(),
                 onTaskMoved: _moveTask,

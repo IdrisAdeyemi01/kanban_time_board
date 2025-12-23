@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 import 'package:kanban_time_board/src/features/kanban/data/models/kanban_task.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/widgets/draggable_kanban_task_card.dart';
 
@@ -27,7 +28,7 @@ class KanbanTaskList extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
-            'Drop tasks here',
+            context.l10n.dropTasksHere,
             style: TextStyle(color: Colors.grey.shade500, fontSize: 14),
           ),
         ),

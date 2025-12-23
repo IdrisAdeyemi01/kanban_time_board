@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 
 enum TaskStatus {
   todo(title: 'To Do', headerColor: Colors.orange),
@@ -17,4 +18,18 @@ enum TaskStatus {
   bool get isDone => this == TaskStatus.done;
   bool get isInProgress => this == TaskStatus.inProgress;
   bool get isToDo => this == TaskStatus.todo;
+
+  String localizedTitle(BuildContext context) {
+    final l10n = context.l10n;
+    switch (this) {
+      case TaskStatus.todo:
+        return l10n.toDo;
+      case TaskStatus.inProgress:
+        return l10n.inProgress;
+      case TaskStatus.done:
+        return l10n.done;
+      case TaskStatus.completed:
+        return l10n.completed;
+    }
+  }
 }

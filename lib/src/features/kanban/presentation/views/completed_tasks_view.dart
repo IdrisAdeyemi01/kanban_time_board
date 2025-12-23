@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kanban_time_board/src/core/router/app_routes.dart';
+import 'package:kanban_time_board/src/core/extensions/context_extension.dart';
 import 'package:kanban_time_board/src/features/kanban/domain/entities/params/delete_task_param.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/bloc/task_bloc.dart';
 import 'package:kanban_time_board/src/features/kanban/presentation/views/widgets/kanban_task_card.dart';
@@ -25,7 +26,7 @@ class _CompletedTasksViewState extends State<CompletedTasksView> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Completed Tasks')),
+          appBar: AppBar(title: Text(context.l10n.completedTasksTitle)),
           body: Padding(
             padding: const EdgeInsets.all(20),
             child: Builder(
@@ -39,7 +40,7 @@ class _CompletedTasksViewState extends State<CompletedTasksView> {
                 if (completedTasks.isEmpty) {
                   return Center(
                     child: Text(
-                      'No completed tasks yet!',
+                      context.l10n.noCompletedTasksYet,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade600,
