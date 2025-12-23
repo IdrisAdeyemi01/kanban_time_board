@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_time_board/src/core/constants/app_theme.dart';
 import 'package:kanban_time_board/src/core/di/di.dart';
 import 'package:kanban_time_board/src/core/gen/app_localizations.dart';
 import 'package:kanban_time_board/src/features/settings/core/di.dart';
@@ -37,9 +38,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             onGenerateTitle: (context) =>
                 AppLocalizations.of(context)!.appTitle,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-            ),
+            theme: appTheme,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(state.selectedLocal),
